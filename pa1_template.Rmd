@@ -1,0 +1,30 @@
+---
+title: "pa1_template"
+output: html_document
+---
+
+## Removing NA's
+The NAs are removed from the dataset
+
+```{r echo=TRUE}
+doc <- read.csv("activity.csv")
+dox <- subset(doc,doc$steps != "NA") 
+```
+
+## Average Steps per Day
+ It is found out by splitting with respect to date and applying mean function
+ ```{r echo=TRUE}
+dox$steps <- as.numeric(dox$steps)
+s <- split(dox$steps,dox$date)
+l <- sapply(s, mean)
+l <- as.numeric(l)
+hist(l, xlab = "Average Steps Per Day",main = "Average Steps ")
+```
+
+##Total Steps per Day
+ ```{r echo=TRUE}
+sm <- sapply(s,sum)
+sm <- as.numeric(sm)
+plot(sm,ylab = "Total Steps",xlab = "Days",main = "Steps per Day")
+```
+
