@@ -20,7 +20,10 @@ l <- sapply(s, mean)
 l <- as.numeric(l)
 hist(l, xlab = "Average Steps Per Day",main = "Average Steps ")
 ```
-
+## Mean 
+  ```{r}
+  print(l)
+  ```
 ##Total Steps per Day
  ```{r echo=TRUE}
 sm <- sapply(s,sum)
@@ -28,3 +31,11 @@ sm <- as.numeric(sm)
 plot(sm,ylab = "Total Steps",xlab = "Days",main = "Steps per Day")
 ```
 
+```{r echo=TRUE}
+library(ggplot2)
+dox$date <- as.Date(dox$date)
+wday <- c("Monday","Tuesday","Wednesday","Thursday","Friday")
+dox$wd <- factor((weekdays(dox$date) %in% wday),levels = c(FALSE,TRUE),labels = c("weekend","weekday"))
+#dox$wd
+qplot(steps,data = dox,main = "WEEK", facets = .~wd)
+```
